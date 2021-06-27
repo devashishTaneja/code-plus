@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:code-plus.helloWorld"
+		"onCommand:code-plus.searchOverflow"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "code-plus.helloWorld",
-				"title": "Hello World"
+				"command": "code-plus.searchOverflow",
+				"title": "Search Overflow"
 			}
 		]
 	},
@@ -36,5 +36,8 @@
 		"mocha": "^8.4.0",
 		"typescript": "^4.3.2",
 		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"node-fetch": "^2.6.1"
 	}
 }
