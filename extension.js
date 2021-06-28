@@ -2,12 +2,19 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const fetch = require('node-fetch');
+const fs = require('fs');
+const path = require('path');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
 /**
  * @param {vscode.ExtensionContext} context
  */
+
+//  import fs from 'fs';
+//  import path from 'path';
+ 
+
 function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
@@ -17,9 +24,33 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('code-plus.searchOverflow', async function () {
+
+	console.log();
+
+	// FILL-SNIPPETS
+	let loadSnippet = vscode.commands.registerCommand('code-plus.loadSnippet', function(){
+		if(vscode.window.activeTextEditor){	
+			try{
+				let fileName = './snippets/'+vscode.window.activeTextEditor.document.languageId+'.txt';
+			console.log(fileName);
+				let sample = new vscode.SnippetString(fs.readFileSync(path.resolve(__dirname, fileName), {encoding:'utf8', flag:'r'}));
+				vscode.window.activeTextEditor.insertSnippet(sample);
+			}
+			catch(err){
+				console.log(err);
+			}
+		}
+		else{
+			vscode.window.showErrorMessage("Open Text Editor");
+		}
+		// console.log(.document.languageId);
+	})
+
+	// SEARCH-OVERFLOW
+	let searchOverflow = vscode.commands.registerCommand('code-plus.searchOverflow', async function () {
+
 		// Create Input Box and wait for query.
-		let query = await vscode.window.showInputBox();
+		let query = await vscode.window.showInputBox({placeHolder:"Enter query"});
 
 		// get data from StackOverflow API
 		// Sample data should look something like
@@ -46,7 +77,6 @@ function activate(context) {
 			if(lang=="cpp") lang="c++";
 			url += '&tagged='+lang;
 		}
-		console.log(url);
 		// @ts-ignore
 		let response = await fetch(url);
 		let json = await response.json();
@@ -83,7 +113,8 @@ function activate(context) {
 		return text;
 	}
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(loadSnippet);
+	context.subscriptions.push(searchOverflow);
 }
 
 // this method is called when your extension is deactivated

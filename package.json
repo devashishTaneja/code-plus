@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:code-plus.searchOverflow"
+		"onCommand:code-plus.searchOverflow",
+		"onCommand:code-plus.loadSnippet"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -18,8 +19,27 @@
 			{
 				"command": "code-plus.searchOverflow",
 				"title": "Search Overflow"
+			},
+			{
+				"command": "code-plus.loadSnippet",
+				"title": "Load Snippet"
 			}
-		]
+		],
+		"menus": {
+            "editor/context": [
+                {
+                    "command": "code-plus.searchOverflow",
+                    "group": "z_commands",
+                    "when": "editorTextFocus"
+                },
+				{
+                    "command": "code-plus.loadSnippet",
+                    "group": "z_commands",
+                    "when": "editorTextFocus"
+                }
+
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
