@@ -43,7 +43,6 @@ function activate(context) {
 		else{
 			vscode.window.showErrorMessage("Open Text Editor");
 		}
-		// console.log(.document.languageId);
 	})
 
 	// SEARCH-OVERFLOW

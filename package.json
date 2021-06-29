@@ -2,7 +2,13 @@
 	"name": "code-plus",
 	"displayName": "code-plus",
 	"description": "Search for errors on Stack Overflow and load custom code snippets. ",
-	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/dtaneja123/codeplus.git"
+	  },
+	"version": "1.0.1",
+	"icon": "code-plus.png",
+	"publisher": "devashishTaneja",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
