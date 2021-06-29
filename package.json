@@ -1,6 +1,6 @@
 {
 	"name": "code-plus",
-	"displayName": "code-plus",
+	"displayName": "Code Plus",
 	"description": "Search for errors on Stack Overflow and load custom code snippets. ",
 	"repository": {
 		"type": "git",
